@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4842099E1FA0BDDB000488D2 /* TrackerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */; };
 		48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */; };
 		48CAC5D31FA0AD610039A2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D11FA0AD610039A2E2 /* Main.storyboard */; };
 		48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D41FA0AD610039A2E2 /* Assets.xcassets */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4842099C1FA0BDDB000488D2 /* TrackerTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackerTableViewController.h; sourceTree = "<group>"; };
+		4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackerTableViewController.m; sourceTree = "<group>"; };
 		48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelyMoves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 			children = (
 				48CAC5F01FA0B0C30039A2E2 /* WelcomeViewController.h */,
 				48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */,
+				4842099C1FA0BDDB000488D2 /* TrackerTableViewController.h */,
+				4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */,
 				48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */,
 				48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */,
+				4842099E1FA0BDDB000488D2 /* TrackerTableViewController.m in Sources */,
 				48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
