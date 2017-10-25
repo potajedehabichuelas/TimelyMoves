@@ -9,14 +9,22 @@
 #import "WelcomeViewController.h"
 #import "InterfaceUtilities.h"
 
-@interface WelcomeViewController ()
+NSString *const showTrackerSegue = @"showPlacesSegue";
 
+@interface WelcomeViewController () {
+}
+    
 @end
 
 @implementation WelcomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[LocationManager sharedManager] setAuthChangedDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
 }
 
@@ -26,17 +34,35 @@
 }
 
 - (IBAction)requestAccess:(UIButton *)sender {
+    
     [InterfaceUtilities buttonScaleAnimation:sender];
+    
+    if ([LocationManager getLocationAuthAccess ] == LocAuthStatuUndetermined) {
+        [[LocationManager sharedManager] requestLocationAuth];
+    } else if ([LocationManager getLocationAuthAccess ] == LocAuthStatusDenied) {
+        [self presentAlertWithTitle:@"Location access Denied" message:@"Please open this app's settings and grant location access"];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)presentAlertWithTitle:(NSString*)title message:(NSString*)message {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
-*/
+
+- (void)locationAuthChanged:(AuthorizationStatus)newAuth {
+    if (newAuth == LocAuthStatusDenied) {
+        // Inform User
+        [self presentAlertWithTitle:@"Location access Denied" message:@"Please open this app's settings and grant location access"];
+    } else if (newAuth == LocAuthStatusGranted) {
+        //Go to TrackerTableVC
+        [self performSegueWithIdentifier:showTrackerSegue sender:self];
+    }
+}
 
 @end

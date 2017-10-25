@@ -209,6 +209,7 @@
                     <navigationItem key="navigationItem" id="B5U-8M-PyB"/>
                     <connections>
                         <outlet property="allowAccessButton" destination="t1R-m8-q0S" id="ufw-Oj-cHX"/>
+                        <segue destination="WED-4d-Cb5" kind="show" identifier="showPlacesSegue" id="xFu-3O-DnA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOU-Ss-lJz" userLabel="First Responder" sceneMemberID="firstResponder"/>

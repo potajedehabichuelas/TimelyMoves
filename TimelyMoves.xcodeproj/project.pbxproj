@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4842099E1FA0BDDB000488D2 /* TrackerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */; };
+		484209A21FA0DBF4000488D2 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209A11FA0DBF4000488D2 /* LocationManager.m */; };
 		48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */; };
 		48CAC5D31FA0AD610039A2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D11FA0AD610039A2E2 /* Main.storyboard */; };
 		48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D41FA0AD610039A2E2 /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		4842099C1FA0BDDB000488D2 /* TrackerTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackerTableViewController.h; sourceTree = "<group>"; };
 		4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackerTableViewController.m; sourceTree = "<group>"; };
+		484209A01FA0DBF4000488D2 /* LocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		484209A11FA0DBF4000488D2 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelyMoves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -45,6 +48,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4842099F1FA0DBD1000488D2 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				484209A01FA0DBF4000488D2 /* LocationManager.h */,
+				484209A11FA0DBF4000488D2 /* LocationManager.m */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
 		48CAC5BF1FA0AD610039A2E2 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +76,7 @@
 		48CAC5CA1FA0AD610039A2E2 /* TimelyMoves */ = {
 			isa = PBXGroup;
 			children = (
+				4842099F1FA0DBD1000488D2 /* Tracking */,
 				48CAC5EF1FA0AEFC0039A2E2 /* ViewControllers */,
 				48CAC5F31FA0B4F40039A2E2 /* Utilities */,
 				48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */,
@@ -168,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484209A21FA0DBF4000488D2 /* LocationManager.m in Sources */,
 				48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */,
 				48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */,
 				48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */,

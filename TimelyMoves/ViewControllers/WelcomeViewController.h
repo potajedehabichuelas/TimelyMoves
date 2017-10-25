@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocationManager.h"
 
-@interface WelcomeViewController : UIViewController
+@interface WelcomeViewController : UIViewController  <LocationAuthChangedDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *allowAccessButton;
 
