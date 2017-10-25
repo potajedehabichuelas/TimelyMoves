@@ -9,7 +9,7 @@
 #import "WelcomeViewController.h"
 #import "InterfaceUtilities.h"
 
-NSString *const showTrackerSegue = @"showPlacesSegue";
+NSString *const TRACKER_SEGUE = @"showPlacesSegue";
 
 @interface WelcomeViewController () {
 }
@@ -61,7 +61,7 @@ NSString *const showTrackerSegue = @"showPlacesSegue";
         [self presentAlertWithTitle:@"Location access Denied" message:@"Please open this app's settings and grant location access"];
     } else if (newAuth == LocAuthStatusGranted) {
         //Go to TrackerTableVC
-        [self performSegueWithIdentifier:showTrackerSegue sender:self];
+        [self performSegueWithIdentifier:TRACKER_SEGUE sender:self];
     }
 }
 

@@ -7,8 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocationManager.h"
+#import "Transit.h"
 
-@interface TransitTracker : NSObject
+@protocol TransitFeedDelegate
+- (void)transitDidUpdate:(Transit*)transit;
+@end
+
+@interface TransitTracker : NSObject <LocationFeedDelegate>
+
+@property (strong, nonatomic) Transit* transit;
+@property (nonatomic, weak) id transitFeedDelegate;
 
 #pragma mark Class Methods
 + (TransitTracker *)sharedManager;

@@ -10,6 +10,8 @@
 
 @implementation Placemark
 
+@synthesize name, location, arrivalDate, departureDate;
+
 -(id)init {
     if (self = [super init]) {
         self.name = nil;

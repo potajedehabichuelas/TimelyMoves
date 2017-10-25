@@ -18,7 +18,6 @@
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
         _sharedInstance = [[self alloc] init];
-        [_sharedInstance InitLocationManager];
     });
     
     return _sharedInstance;
@@ -30,6 +29,13 @@
     } else {
         return NO;
     }
+}
+
+- (void)startUpdatingLocationWithDelegate:(id)delegate {
+    //Starts updating location and sets the delegate that would receive the location's information
+    self.locationFeedDelegate = delegate;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    [self.locationManager startUpdatingLocation];
 }
 
 + (AuthorizationStatus)getLocationAuthAccess {
@@ -67,11 +73,28 @@
     }
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    CLLocation *newLocation = [locations lastObject];
+    
+    if (newLocation != nil) {
+        //Send the location to the listener
+        [self.locationFeedDelegate locationUpdated:newLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location manager could not retrieve location: %@", error);
+}
+
 #pragma mark Instance Methods
 
-- (void)InitLocationManager {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
+-(id)init {
+    if (self = [super init]) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+    }
+    return self;
 }
 
 - (void)requestLocationAuth {

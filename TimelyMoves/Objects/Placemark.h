@@ -16,4 +16,6 @@
 @property (strong, nonatomic) NSDate* arrivalDate;
 @property (strong, nonatomic) NSDate* departureDate;
 
+- (id)initWithPlaceName:(NSString*)name location:(CLLocationCoordinate2D)coordinate arrivalDate:(NSDate*)arrival departureDate:(NSDate*)departure;
+
 @end

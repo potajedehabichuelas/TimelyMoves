@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TransitTracker.h"
 
-@interface TrackerTableViewController : UITableViewController
+@interface TrackerTableViewController : UITableViewController <TransitFeedDelegate>
 
 @end

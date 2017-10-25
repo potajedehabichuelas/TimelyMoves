@@ -19,13 +19,20 @@ typedef NS_ENUM(NSInteger, AuthorizationStatus) {
 - (void)locationAuthChanged:(AuthorizationStatus)newAuth;
 @end
 
+@protocol LocationFeedDelegate
+- (void)locationUpdated:(CLLocation*)newLoc;
+@end
+
 @interface LocationManager : NSObject <CLLocationManagerDelegate>
 
 @property (strong,nonatomic) CLLocationManager *locationManager;
-@property (nonatomic, weak) id  authChangedDelegate;
+
+@property (nonatomic, weak) id authChangedDelegate;
+@property (nonatomic, weak) id locationFeedDelegate;
 
 #pragma mark Instance Methods
 - (void)requestLocationAuth;
+- (void)startUpdatingLocationWithDelegate:(id)delegate;
 
 #pragma mark Class Methods
 + (LocationManager *)sharedManager;
