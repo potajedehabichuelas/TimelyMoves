@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4842099E1FA0BDDB000488D2 /* TrackerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */; };
 		484209A21FA0DBF4000488D2 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209A11FA0DBF4000488D2 /* LocationManager.m */; };
+		484209A61FA108A9000488D2 /* Placemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209A51FA108A9000488D2 /* Placemark.m */; };
+		484209A91FA108BE000488D2 /* Transit.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209A81FA108BE000488D2 /* Transit.m */; };
+		484209AE1FA1119E000488D2 /* TransitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209AD1FA1119E000488D2 /* TransitTracker.m */; };
 		48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */; };
 		48CAC5D31FA0AD610039A2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D11FA0AD610039A2E2 /* Main.storyboard */; };
 		48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D41FA0AD610039A2E2 /* Assets.xcassets */; };
@@ -23,6 +26,12 @@
 		4842099D1FA0BDDB000488D2 /* TrackerTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrackerTableViewController.m; sourceTree = "<group>"; };
 		484209A01FA0DBF4000488D2 /* LocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		484209A11FA0DBF4000488D2 /* LocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		484209A41FA108A9000488D2 /* Placemark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Placemark.h; path = TimelyMoves/Objects/Placemark.h; sourceTree = SOURCE_ROOT; };
+		484209A51FA108A9000488D2 /* Placemark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Placemark.m; path = TimelyMoves/Objects/Placemark.m; sourceTree = SOURCE_ROOT; };
+		484209A71FA108BE000488D2 /* Transit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Transit.h; path = TimelyMoves/Objects/Transit.h; sourceTree = SOURCE_ROOT; };
+		484209A81FA108BE000488D2 /* Transit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Transit.m; path = TimelyMoves/Objects/Transit.m; sourceTree = SOURCE_ROOT; };
+		484209AC1FA1119E000488D2 /* TransitTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitTracker.h; sourceTree = "<group>"; };
+		484209AD1FA1119E000488D2 /* TransitTracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitTracker.m; sourceTree = "<group>"; };
 		48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelyMoves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -48,13 +57,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4842099F1FA0DBD1000488D2 /* Tracking */ = {
+		4842099F1FA0DBD1000488D2 /* Tracking Management */ = {
 			isa = PBXGroup;
 			children = (
 				484209A01FA0DBF4000488D2 /* LocationManager.h */,
 				484209A11FA0DBF4000488D2 /* LocationManager.m */,
+				484209AC1FA1119E000488D2 /* TransitTracker.h */,
+				484209AD1FA1119E000488D2 /* TransitTracker.m */,
 			);
-			path = Tracking;
+			path = "Tracking Management";
+			sourceTree = "<group>";
+		};
+		484209A31FA10871000488D2 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				484209A41FA108A9000488D2 /* Placemark.h */,
+				484209A51FA108A9000488D2 /* Placemark.m */,
+				484209A71FA108BE000488D2 /* Transit.h */,
+				484209A81FA108BE000488D2 /* Transit.m */,
+			);
+			name = Objects;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		48CAC5BF1FA0AD610039A2E2 = {
@@ -76,7 +99,8 @@
 		48CAC5CA1FA0AD610039A2E2 /* TimelyMoves */ = {
 			isa = PBXGroup;
 			children = (
-				4842099F1FA0DBD1000488D2 /* Tracking */,
+				484209A31FA10871000488D2 /* Objects */,
+				4842099F1FA0DBD1000488D2 /* Tracking Management */,
 				48CAC5EF1FA0AEFC0039A2E2 /* ViewControllers */,
 				48CAC5F31FA0B4F40039A2E2 /* Utilities */,
 				48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */,
@@ -181,8 +205,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484209AE1FA1119E000488D2 /* TransitTracker.m in Sources */,
 				484209A21FA0DBF4000488D2 /* LocationManager.m in Sources */,
+				484209A91FA108BE000488D2 /* Transit.m in Sources */,
 				48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */,
+				484209A61FA108A9000488D2 /* Placemark.m in Sources */,
 				48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */,
 				48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */,
 				4842099E1FA0BDDB000488D2 /* TrackerTableViewController.m in Sources */,
