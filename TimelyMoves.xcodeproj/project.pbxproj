@@ -12,6 +12,8 @@
 		48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D41FA0AD610039A2E2 /* Assets.xcassets */; };
 		48CAC5D81FA0AD610039A2E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D61FA0AD610039A2E2 /* LaunchScreen.storyboard */; };
 		48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5DA1FA0AD610039A2E2 /* main.m */; };
+		48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */; };
+		48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,10 @@
 		48CAC5D71FA0AD610039A2E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48CAC5D91FA0AD610039A2E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48CAC5DA1FA0AD610039A2E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		48CAC5F01FA0B0C30039A2E2 /* WelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		48CAC5F41FA0B8E70039A2E2 /* InterfaceUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceUtilities.h; sourceTree = "<group>"; };
+		48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				48CAC5EF1FA0AEFC0039A2E2 /* ViewControllers */,
-				48CAC5EE1FA0AEE80039A2E2 /* TableViewCells */,
-				48CAC5ED1FA0AEE10039A2E2 /* Storage */,
-				48CAC5EC1FA0AED20039A2E2 /* Objects */,
+				48CAC5F31FA0B4F40039A2E2 /* Utilities */,
 				48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */,
 				48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */,
 				48CAC5D11FA0AD610039A2E2 /* Main.storyboard */,
@@ -70,35 +74,22 @@
 			path = TimelyMoves;
 			sourceTree = "<group>";
 		};
-		48CAC5EC1FA0AED20039A2E2 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Objects;
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		48CAC5ED1FA0AEE10039A2E2 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Storage;
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
-		48CAC5EE1FA0AEE80039A2E2 /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = TableViewCells;
-			path = TableViewCell;
-			sourceTree = "<group>";
-		};
 		48CAC5EF1FA0AEFC0039A2E2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				48CAC5F01FA0B0C30039A2E2 /* WelcomeViewController.h */,
+				48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		48CAC5F31FA0B4F40039A2E2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				48CAC5F41FA0B8E70039A2E2 /* InterfaceUtilities.h */,
+				48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +165,8 @@
 			files = (
 				48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */,
 				48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */,
+				48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */,
+				48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
