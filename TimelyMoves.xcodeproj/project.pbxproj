@@ -21,6 +21,7 @@
 		48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5DA1FA0AD610039A2E2 /* main.m */; };
 		48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */; };
 		48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */; };
+		FACD0B6513AF8B953EA9ABCB /* libPods-TimelyMoves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,9 @@
 		48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		48CAC5F41FA0B8E70039A2E2 /* InterfaceUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceUtilities.h; sourceTree = "<group>"; };
 		48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceUtilities.m; sourceTree = "<group>"; };
+		5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimelyMoves.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F68077C2F6D520C34F22E7 /* Pods-TimelyMoves.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.release.xcconfig"; sourceTree = "<group>"; };
+		EA9CA8D7C6270F46503714D7 /* Pods-TimelyMoves.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +61,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACD0B6513AF8B953EA9ABCB /* libPods-TimelyMoves.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29005DDA6FBBF9D7940BAA2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA9CA8D7C6270F46503714D7 /* Pods-TimelyMoves.debug.xcconfig */,
+				D7F68077C2F6D520C34F22E7 /* Pods-TimelyMoves.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4842099F1FA0DBD1000488D2 /* Tracking Management */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +117,8 @@
 			children = (
 				48CAC5CA1FA0AD610039A2E2 /* TimelyMoves */,
 				48CAC5C91FA0AD610039A2E2 /* Products */,
+				29005DDA6FBBF9D7940BAA2D /* Pods */,
+				EAFA70DF992CEA285D68051C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +169,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		EAFA70DF992CEA285D68051C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,9 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48CAC5DE1FA0AD610039A2E2 /* Build configuration list for PBXNativeTarget "TimelyMoves" */;
 			buildPhases = (
+				D152F6E18DCEEED731FADA27 /* [CP] Check Pods Manifest.lock */,
 				48CAC5C41FA0AD610039A2E2 /* Sources */,
 				48CAC5C51FA0AD610039A2E2 /* Frameworks */,
 				48CAC5C61FA0AD610039A2E2 /* Resources */,
+				CAEA3E77FBD7D07C16CC988B /* [CP] Embed Pods Frameworks */,
+				684810D9ABFF2ECD6512BEE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +245,78 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		684810D9ABFF2ECD6512BEE4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves-resources.sh",
+				"${PODS_ROOT}/RMessage/RMessage/Resources/RMessageView.xib",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundErrorIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundErrorIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundSuccessIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundSuccessIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundWarningIcon.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationBackgroundWarningIcon@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationButtonBackground.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/NotificationButtonBackground@2x.png",
+				"${PODS_ROOT}/RMessage/RMessage/Assets/RMessageDefaultDesign.json",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAEA3E77FBD7D07C16CC988B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PPTopMostController/PPTopMostController.framework",
+				"${BUILT_PRODUCTS_DIR}/RMessage/RMessage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HexColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PPTopMostController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RMessage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D152F6E18DCEEED731FADA27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimelyMoves-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48CAC5C41FA0AD610039A2E2 /* Sources */ = {
@@ -366,6 +465,7 @@
 		};
 		48CAC5DF1FA0AD610039A2E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA9CA8D7C6270F46503714D7 /* Pods-TimelyMoves.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -380,6 +480,7 @@
 		};
 		48CAC5E01FA0AD610039A2E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7F68077C2F6D520C34F22E7 /* Pods-TimelyMoves.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

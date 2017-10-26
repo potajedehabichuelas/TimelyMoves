@@ -11,6 +11,8 @@
 #import "LocationManager.h"
 #import "PlacemarkTableViewCell.h"
 #import "PlacemarkTransitTableViewCell.h"
+#import "DGActivityIndicatorView.h"
+#import "RMessage.h"
 
 @interface TrackerTableViewController ()
 
@@ -23,6 +25,7 @@ NSString* const HEADER_CELLID = @"headerCell";
 
 @implementation TrackerTableViewController {
     TransitTracker* transits;
+    DGActivityIndicatorView *activityIndicatorView;
 }
 
 - (void)viewDidLoad {
@@ -37,6 +40,18 @@ NSString* const HEADER_CELLID = @"headerCell";
     
     //Start updating location
     [[LocationManager sharedManager] startUpdatingLocationWithDelegate:transits];
+    
+    activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeDoubleBounce tintColor:[UIColor whiteColor] size:30.0f];
+    activityIndicatorView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
+    activityIndicatorView.center = self.view.center;
+    [self.view addSubview:activityIndicatorView];
+    [activityIndicatorView startAnimating];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self presentWaitNotification];
+    });
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +66,14 @@ NSString* const HEADER_CELLID = @"headerCell";
     } else {
         self.tableView.scrollEnabled = YES;
     }
+}
+
+- (void)presentWaitNotification {
+    [RMessage showNotificationWithTitle:@"Please wait while we retrieve your location"
+                               subtitle:@""
+                                   type:RMessageTypeWarning
+                         customTypeName:nil
+                               callback:nil];
 }
 
 - (double)convertRangeOfMinutes:(double)minutes {
@@ -69,28 +92,38 @@ NSString* const HEADER_CELLID = @"headerCell";
 #pragma mark - TransitFeedDelegate methods
 
 - (void)placemarkDidUpdate:(Transit *)transit {
-    
+    NSLog(@"Entering placemark new");
     if (transit.places.count > 0) {
         //Insert placemark
         [self.tableView beginUpdates];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:transit.places.count-1]  withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     }
+    
+    if ([activityIndicatorView animating]) {
+        [activityIndicatorView stopAnimating];
+    }
+    NSLog(@"Exit placemark new");
 }
 
 - (void)transitDidStart:(Transit*)transit {
+    NSLog(@"Entering Transit start");
     //Insert new transit
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
+    if (transit.places.count > 0) {
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
+    NSLog(@"Entering Transit end");
 }
 
 - (void)transitDidUpdate:(Transit *)transit {
-
+    NSLog(@"Entering Transit update");
     [self.tableView beginUpdates];
     [self.tableView reloadData];
     [self.tableView endUpdates];
+    NSLog(@"Entering Transit end");
 }
 
 #pragma mark - Table view Delegate
