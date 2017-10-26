@@ -12,6 +12,8 @@
 		484209AE1FA1119E000488D2 /* TransitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 484209AD1FA1119E000488D2 /* TransitTracker.m */; };
 		48AAB34A1FA1240800CFE594 /* Transit.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAB3461FA1240800CFE594 /* Transit.m */; };
 		48AAB34B1FA1240800CFE594 /* Placemark.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAB3491FA1240800CFE594 /* Placemark.m */; };
+		48AAB3511FA1498A00CFE594 /* PlacemarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAB3501FA1498A00CFE594 /* PlacemarkTableViewCell.m */; };
+		48AAB3541FA149A000CFE594 /* PlacemarkTransitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48AAB3531FA149A000CFE594 /* PlacemarkTransitTableViewCell.m */; };
 		48CAC5CD1FA0AD610039A2E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */; };
 		48CAC5D31FA0AD610039A2E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D11FA0AD610039A2E2 /* Main.storyboard */; };
 		48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CAC5D41FA0AD610039A2E2 /* Assets.xcassets */; };
@@ -32,6 +34,10 @@
 		48AAB3471FA1240800CFE594 /* Placemark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Placemark.h; path = TimelyMoves/Objects/Placemark.h; sourceTree = SOURCE_ROOT; };
 		48AAB3481FA1240800CFE594 /* Transit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Transit.h; path = TimelyMoves/Objects/Transit.h; sourceTree = SOURCE_ROOT; };
 		48AAB3491FA1240800CFE594 /* Placemark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Placemark.m; path = TimelyMoves/Objects/Placemark.m; sourceTree = SOURCE_ROOT; };
+		48AAB34F1FA1498A00CFE594 /* PlacemarkTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlacemarkTableViewCell.h; path = TimelyMoves/TableViewCells/PlacemarkTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		48AAB3501FA1498A00CFE594 /* PlacemarkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlacemarkTableViewCell.m; path = TimelyMoves/TableViewCells/PlacemarkTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		48AAB3521FA149A000CFE594 /* PlacemarkTransitTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlacemarkTransitTableViewCell.h; path = TimelyMoves/TableViewCells/PlacemarkTransitTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		48AAB3531FA149A000CFE594 /* PlacemarkTransitTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlacemarkTransitTableViewCell.m; path = TimelyMoves/TableViewCells/PlacemarkTransitTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelyMoves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CAC5CB1FA0AD610039A2E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48CAC5CC1FA0AD610039A2E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,6 +86,18 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		48AAB34E1FA1496800CFE594 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				48AAB34F1FA1498A00CFE594 /* PlacemarkTableViewCell.h */,
+				48AAB3501FA1498A00CFE594 /* PlacemarkTableViewCell.m */,
+				48AAB3521FA149A000CFE594 /* PlacemarkTransitTableViewCell.h */,
+				48AAB3531FA149A000CFE594 /* PlacemarkTransitTableViewCell.m */,
+			);
+			name = TableViewCells;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		48CAC5BF1FA0AD610039A2E2 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +117,7 @@
 		48CAC5CA1FA0AD610039A2E2 /* TimelyMoves */ = {
 			isa = PBXGroup;
 			children = (
+				48AAB34E1FA1496800CFE594 /* TableViewCells */,
 				48AAB3451FA123FD00CFE594 /* Objects */,
 				4842099F1FA0DBD1000488D2 /* Tracking Management */,
 				48CAC5EF1FA0AEFC0039A2E2 /* ViewControllers */,
@@ -205,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48AAB3541FA149A000CFE594 /* PlacemarkTransitTableViewCell.m in Sources */,
+				48AAB3511FA1498A00CFE594 /* PlacemarkTableViewCell.m in Sources */,
 				48AAB34B1FA1240800CFE594 /* Placemark.m in Sources */,
 				484209AE1FA1119E000488D2 /* TransitTracker.m in Sources */,
 				48AAB34A1FA1240800CFE594 /* Transit.m in Sources */,

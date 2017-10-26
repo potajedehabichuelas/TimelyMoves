@@ -18,9 +18,17 @@
     return self;
 }
 
--(void)addNewPlacemark:(Placemark*)place coordinates:(NSArray*)coordinates {
+- (double)getTransitMinutesForTransitIndex:(int)tIndex {
     
-    
+    if (tIndex >= 0 && self.places.count > tIndex+1) {
+        Placemark *firstPlace = self.places[tIndex];
+        Placemark *nextPlace = self.places[tIndex+1];
+        
+        return [firstPlace.departureDate timeIntervalSinceDate:nextPlace.arrivalDate] / 60;
+        
+    } else {
+        return 0;
+    }
 }
 
 @end

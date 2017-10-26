@@ -8,7 +8,7 @@
 
 #import "TransitTracker.h"
 
-const int STOP_BY_SECONDS = 10;
+const int STOP_BY_SECONDS = 3;
 
 #define CLCOORDINATE_EPSILON 0.005f
 #define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
@@ -52,7 +52,7 @@ const int STOP_BY_SECONDS = 10;
 
 - (void)updatePlacemarkName:(CLLocation*)location placemark:(Placemark*)place {
     //Geodecode address
-    NSLog(@"Resolving the Address");
+
     if (reverseGeocoder) {
         [reverseGeocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
             CLPlacemark* placemark = [placemarks firstObject];
@@ -67,6 +67,8 @@ const int STOP_BY_SECONDS = 10;
                 locationName = @"Nameless place";
             }
             [place setName:locationName];
+            //Call delegate to update the marker
+            [self.transitFeedDelegate transitDidUpdate:self.transit];
         }];
     }
 }
@@ -111,7 +113,7 @@ const int STOP_BY_SECONDS = 10;
     
     if (!firstPlacemarkAdded) {
         //If this is the first location we got, we add it straightaway
-        [self createNewPlacemarkWithLocation:lastLocation];
+        [self createNewPlacemarkWithLocation:newLoc];
         firstPlacemarkAdded = YES;
     }
     
@@ -148,7 +150,7 @@ const int STOP_BY_SECONDS = 10;
         [partialLocations addObject:newLoc];
         
         if (departureTimeNeedsUpdating) {
-            [self updateLastPlaceMarkDepartureTime:lastLocation.timestamp];
+            [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
         }
         
     }

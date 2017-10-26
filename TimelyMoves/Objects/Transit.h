@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *places;
 @property (strong, nonatomic) NSMutableDictionary *coordinatesForPlace;
 
--(void)addNewPlacemark:(Placemark*)place coordinates:(NSArray*)coordinates;
+//Returns the minutes of transit in between the place at index and the next one
+- (double)getTransitMinutesForTransitIndex:(int)tIndex;
 
 @end
