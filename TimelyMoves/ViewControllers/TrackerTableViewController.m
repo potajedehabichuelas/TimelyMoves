@@ -172,7 +172,7 @@ NSString* const HEADER_CELLID = @"headerCell";
     } else {
         PlacemarkTransitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLACEMARK_TRANSIT_CELLID forIndexPath:indexPath];
 
-        int minutes = [transits.transit getTransitMinutesForTransitIndex:(int)indexPath.section];
+        int minutes = [transits.transit getTransitMinutesForSection:(int)indexPath.section];
         //The height of the walking section would vary height depending on how much time the user has been moving
         
         double multiplier = [self convertRangeOfMinutes:minutes];

@@ -18,7 +18,7 @@
     return self;
 }
 
-- (double)getTransitMinutesForTransitIndex:(int)tIndex {
+- (double)getTransitMinutesForSection:(int)tIndex {
     
     if (tIndex < 0){
         return 0;

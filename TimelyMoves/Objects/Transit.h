@@ -18,6 +18,6 @@
 @property (strong, nonatomic) NSMutableDictionary *coordinatesForPlace;
 
 //Returns the minutes of transit in between the place at index and the next one
-- (double)getTransitMinutesForTransitIndex:(int)tIndex;
+- (double)getTransitMinutesForSection:(int)tIndex;
 
 @end
