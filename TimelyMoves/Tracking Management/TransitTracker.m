@@ -53,8 +53,9 @@ const int MIN_ACCURACY = 160;
 
 - (void)updatePlacemarkName:(CLLocation*)location placemark:(Placemark*)place {
     //Geodecode address
-
+    
     if (reverseGeocoder) {
+        place.name = @"Loading address...";
         [reverseGeocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
             CLPlacemark* placemark = [placemarks firstObject];
             NSString* locationName = @"";
@@ -68,12 +69,10 @@ const int MIN_ACCURACY = 160;
                 locationName = @"Nameless place";
             }
             [place setName:locationName];
-            //Call delegate to update the marker
-            [self.transitFeedDelegate placemarkDidUpdate:self.transit];
+            [self.transitFeedDelegate placemarkDidUpdateName:place];
         }];
     }
 }
-
 
 - (void)createNewPlacemarkWithLocation:(CLLocation*)location {
     
@@ -86,6 +85,9 @@ const int MIN_ACCURACY = 160;
     
     //Later on we will update departure date (if the location changes) (not for the first item)
     departureTimeNeedsUpdating = YES;
+    
+    //Call delegate to update the marker
+    [self.transitFeedDelegate placemarkDidUpdate:self.transit];
     
     //Clear the structure
     partialLocations = [[NSMutableArray alloc] init];

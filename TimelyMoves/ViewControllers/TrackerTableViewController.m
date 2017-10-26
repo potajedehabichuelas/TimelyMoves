@@ -91,6 +91,11 @@ NSString* const HEADER_CELLID = @"headerCell";
 
 #pragma mark - TransitFeedDelegate methods
 
+
+- (void)placemarkDidUpdateName:(Placemark*)place {
+    [self.tableView reloadData];
+}
+
 - (void)placemarkDidUpdate:(Transit *)transit {
     NSLog(@"Entering placemark new");
     if (transit.places.count > 0) {

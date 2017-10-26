@@ -12,8 +12,9 @@
 
 @protocol TransitFeedDelegate
 - (void)transitDidUpdate:(Transit*)transit;
-- (void)placemarkDidUpdate:(Transit*)transit;
 - (void)transitDidStart:(Transit*)transit;
+- (void)placemarkDidUpdate:(Transit*)transit;
+- (void)placemarkDidUpdateName:(Placemark*)place;
 @end
 
 @interface TransitTracker : NSObject <LocationFeedDelegate>
