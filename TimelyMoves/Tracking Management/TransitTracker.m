@@ -9,7 +9,7 @@
 #import "TransitTracker.h"
 
 const int STOP_BY_SECONDS = 3;
-const int MIN_ACCURACY = 160;
+const int MIN_ACCURACY = 60;
 const int UPDATE_FREQUENCY = 5;
 
 #define CLCOORDINATE_EPSILON 0.0000001f

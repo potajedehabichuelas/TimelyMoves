@@ -100,7 +100,7 @@ NSString* const HEADER_CELLID = @"headerCell";
     if (transit.places.count > 0) {
         //Insert placemark
         [self.tableView beginUpdates];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:transit.places.count-1]  withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:transit.places.count-1]  withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
     
@@ -113,8 +113,8 @@ NSString* const HEADER_CELLID = @"headerCell";
     //Insert new transit
     if (transit.places.count > 0) {
         [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
     }
 }
