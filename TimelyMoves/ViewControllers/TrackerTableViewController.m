@@ -97,7 +97,6 @@ NSString* const HEADER_CELLID = @"headerCell";
 }
 
 - (void)placemarkDidUpdate:(Transit *)transit {
-    NSLog(@"Entering placemark new");
     if (transit.places.count > 0) {
         //Insert placemark
         [self.tableView beginUpdates];
@@ -108,11 +107,9 @@ NSString* const HEADER_CELLID = @"headerCell";
     if ([activityIndicatorView animating]) {
         [activityIndicatorView stopAnimating];
     }
-    NSLog(@"Exit placemark new");
 }
 
 - (void)transitDidStart:(Transit*)transit {
-    NSLog(@"Entering Transit start");
     //Insert new transit
     if (transit.places.count > 0) {
         [self.tableView beginUpdates];
@@ -120,15 +117,12 @@ NSString* const HEADER_CELLID = @"headerCell";
         [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
     }
-    NSLog(@"Entering Transit end");
 }
 
 - (void)transitDidUpdate:(Transit *)transit {
-    NSLog(@"Entering Transit update");
     [self.tableView beginUpdates];
     [self.tableView reloadData];
     [self.tableView endUpdates];
-    NSLog(@"Entering Transit end");
 }
 
 #pragma mark - Table view Delegate

@@ -158,9 +158,9 @@ const int MIN_ACCURACY = 160;
             [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
             [self linkLocationArrayToPlacemark];
         }
-        //Call the delegate to start updating this section
-        [self.transitFeedDelegate transitDidUpdate:transit];
     }
+    //Call the delegate to start updating this section
+    [self.transitFeedDelegate transitDidUpdate:transit];
 }
 
 @end
