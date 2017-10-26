@@ -9,8 +9,9 @@
 #import "TransitTracker.h"
 
 const int STOP_BY_SECONDS = 3;
+const int MIN_ACCURACY = 50;
 
-#define CLCOORDINATE_EPSILON 0.005f
+#define CLCOORDINATE_EPSILON 0.0000001f
 #define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 @implementation TransitTracker {
@@ -83,26 +84,26 @@ const int STOP_BY_SECONDS = 3;
     
     [self.transit.places addObject:newPlace];
     
-    //Add array of coordinates and placemark object
-    if (self.transit.places.count == 0 ) {
-        //If it's the first placemark in the array we don't store coordinate array (this is the startup point / placemark)
-        newPlace.departureDate = [NSDate date];
-    } else {
-        NSString* dictKey = [NSString stringWithFormat:@"%lul",(self.transit.places.count-1)];
-        [self.transit.coordinatesForPlace setObject:partialLocations forKey:dictKey];
-        
-        //Later on we will update departure date (if the location changes) (not for the first item)
-        departureTimeNeedsUpdating = YES;
-    }
+    //Later on we will update departure date (if the location changes) (not for the first item)
+    departureTimeNeedsUpdating = YES;
     
     //Clear the structure
     partialLocations = [[NSMutableArray alloc] init];
+    //Initial point would be the same as last of the previous leg (it is also useful as we need a previous location to compare)
+    [partialLocations addObject:location];
 }
 
 - (void)updateLastPlaceMarkDepartureTime:(NSDate*)departureTime {
     //Update last placeholder departure time
     Placemark* lastPlace = [self.transit.places lastObject];
     lastPlace.departureDate = departureTime;
+    departureTimeNeedsUpdating = NO;
+}
+
+- (void)linkLocationArrayToPlacemark {
+    //Set the reference that would hold the locations
+    NSString* dictKey = [NSString stringWithFormat:@"%lul",(self.transit.places.count-1)];
+    [self.transit.coordinatesForPlace setObject:partialLocations forKey:dictKey];
 }
 
 #pragma mark LocationFeedDelegate Methods
@@ -110,11 +111,10 @@ const int STOP_BY_SECONDS = 3;
 - (void)locationUpdated:(CLLocation*)newLoc {
     
     CLLocation* lastLocation = [partialLocations lastObject];
-    
-    if (!firstPlacemarkAdded) {
-        //If this is the first location we got, we add it straightaway
-        [self createNewPlacemarkWithLocation:newLoc];
-        firstPlacemarkAdded = YES;
+
+    if (newLoc.horizontalAccuracy > MIN_ACCURACY || newLoc.verticalAccuracy > MIN_ACCURACY) {
+        NSLog(@"TransitTracker Error: Location is not accurate enough");
+        return;
     }
     
     //Compare locations to check if they're equal (can't be exactly equal since they contain Double values)
@@ -122,26 +122,28 @@ const int STOP_BY_SECONDS = 3;
     
         //Check if the 'locationIsStill' flag was already set to true (location has been still for a while)
         if (!locationIsStill) {
-            NSLog(@"USER LOCATION IS STILL: INITIALIZING TIMER");
+            NSLog(@"Location is still: Initializing timer");
             //Set bool flagt to true
             locationIsStill = YES;
             //start the timer (elapsed time) to determine if we should add a placemark
             timeElapsedStill = [NSDate date];
             
-        } else if (locationIsStill && [[NSDate date] timeIntervalSinceDate:timeElapsedStill] > STOP_BY_SECONDS) {
+        } else if (locationIsStill && ([[NSDate date] timeIntervalSinceDate:timeElapsedStill] > STOP_BY_SECONDS || !firstPlacemarkAdded)) {
             
             //Check if the elapsed time is more than the value set by 'STOP_BY_SECONDS'
-            NSLog(@"CREATING NEW PLACEMARK: ELAPSED TIME %f", [[NSDate date] timeIntervalSinceDate:timeElapsedStill]);
+            NSLog(@"Creating new placemark: User has been still for too long!");
             
-            locationIsStill = NO;
-            timeElapsedStill = nil;
+            //We need to keep 'locationIsStill' as YES since we are not moving (we add a placemark because we are staying still!) and this should not change after we add a placemark
+            //We do set the timer to nil to avoid creating placemarks everytime we enter
+             timeElapsedStill = nil;
             
             //Create & add a new placemark
-            [self createNewPlacemarkWithLocation:lastLocation];
+            [self createNewPlacemarkWithLocation:newLoc];
+            if (!firstPlacemarkAdded) {firstPlacemarkAdded = YES;}
         }
         
     } else {
-        NSLog(@"USER LOCATION IS MOVING");
+        NSLog(@"User is moving");
         //If there different we need to make sure we reset flags & timer
         locationIsStill = NO;
         timeElapsedStill = nil;
@@ -151,8 +153,11 @@ const int STOP_BY_SECONDS = 3;
         
         if (departureTimeNeedsUpdating) {
             [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
+            [self linkLocationArrayToPlacemark];
         }
         
+        //Call the delegate to start updating this section
+        [self.transitFeedDelegate transitDidUpdate:transit];
     }
 }
 

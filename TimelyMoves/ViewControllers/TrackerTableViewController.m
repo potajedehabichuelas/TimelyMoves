@@ -69,15 +69,19 @@ NSString* const HEADER_CELLID = @"headerCell";
 #pragma mark - TransitFeedDelegate methods
 
 - (void)transitDidUpdate:(Transit *)transit {
-    
-    [self.tableView beginUpdates];
+    [self.tableView reloadData];
+    /*[self.tableView beginUpdates];
     if (transit.places.count > 1) {
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:transit.places.count-2 inSection:0]] withRowAnimation: UITableViewRowAnimationFade];
     }
     NSArray *indexPaths = @[[NSIndexPath indexPathForRow:transit.places.count-1 inSection:0]];
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     
-    [self.tableView endUpdates];
+    [self.tableView endUpdates];*/
+}
+
+- (void)placemarkDidUpdate:(Transit *)transit {
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view Delegate
@@ -100,7 +104,7 @@ NSString* const HEADER_CELLID = @"headerCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return transits.transit.places.count ;//+ transits.transit.coordinatesForPlace.count;
+    return transits.transit.places.count + transits.transit.coordinatesForPlace.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,13 +114,14 @@ NSString* const HEADER_CELLID = @"headerCell";
         PlacemarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLACEMARK_CELLID forIndexPath:indexPath];
         
         //Retrieve object
-        Placemark *place = transits.transit.places[indexPath.row];
+        Placemark *place = transits.transit.places[(indexPath.row/2)];
         [cell configureCellWithTransitWithName:place.name departureTime:place.departureDate arrivalTime:place.arrivalDate];
         
         return cell;
     } else {
         PlacemarkTransitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLACEMARK_TRANSIT_CELLID forIndexPath:indexPath];
-        int minutes = [transits.transit getTransitMinutesForTransitIndex:(int)indexPath.row-1];
+        int index = (int)(indexPath.row/2) - 1;
+        int minutes = [transits.transit getTransitMinutesForTransitIndex:index];
         //The height of the walking section would vary height depending on how much time the user has been moving
         
         double multiplier = [self convertRangeOfMinutes:minutes];

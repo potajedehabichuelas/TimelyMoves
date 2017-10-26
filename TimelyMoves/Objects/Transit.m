@@ -24,7 +24,11 @@
         Placemark *firstPlace = self.places[tIndex];
         Placemark *nextPlace = self.places[tIndex+1];
         
-        return [firstPlace.departureDate timeIntervalSinceDate:nextPlace.arrivalDate] / 60;
+        NSLog(@"departure %@",firstPlace.departureDate);
+        NSLog(@"arrival %@",nextPlace.arrivalDate);
+    
+        NSLog(@"elapsed seconds %f",[nextPlace.arrivalDate timeIntervalSinceDate:firstPlace.departureDate]);
+        return [nextPlace.arrivalDate timeIntervalSinceDate:firstPlace.departureDate] / 60;
         
     } else {
         return 0;

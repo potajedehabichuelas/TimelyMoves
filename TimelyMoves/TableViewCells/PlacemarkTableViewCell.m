@@ -27,15 +27,12 @@
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     [timeFormat setDateFormat:@"HH:mm"];
     
-    if (departure != nil) {
-        self.departureTime.text =  [timeFormat stringFromDate:departure];
-        
-        NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitMinute
-                                                                       fromDate: arrival toDate: departure options: 0];
-        self.transitMinutes.text = [NSString stringWithFormat:@"%li min", (long)[components minute]];
-    } else {
-        self.transitMinutes.text = @"-- min";
-    }
+    NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitMinute
+                                                                   fromDate: arrival toDate: departure == nil ? [NSDate date] : departure options: 0];
+    
+    self.transitMinutes.text = [NSString stringWithFormat:@"%li min", (long)[components minute]];
+    
+    self.departureTime.text = departure == nil ?  @"--:--" : [timeFormat stringFromDate:departure];
     
     self.arrivalTime.text =  [timeFormat stringFromDate:arrival];
 }
