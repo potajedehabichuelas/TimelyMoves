@@ -1,6 +1,6 @@
 TIMELY MOVES
 
-A simple very copy of some of the features of Moves app interface (shows when user is moving and all the main places he stops by)
+A very simple copy of some of the features of Moves app interface (shows when user is moving and all the main places he stops by)
 
 //////////////////////////////////////////////
 
