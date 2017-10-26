@@ -68,60 +68,79 @@ NSString* const HEADER_CELLID = @"headerCell";
 
 #pragma mark - TransitFeedDelegate methods
 
-- (void)transitDidUpdate:(Transit *)transit {
-    [self.tableView reloadData];
-    /*[self.tableView beginUpdates];
-    if (transit.places.count > 1) {
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:transit.places.count-2 inSection:0]] withRowAnimation: UITableViewRowAnimationFade];
-    }
-    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:transit.places.count-1 inSection:0]];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+- (void)placemarkDidUpdate:(Transit *)transit {
     
-    [self.tableView endUpdates];*/
+    if (transit.places.count > 0) {
+        //Insert placemark
+        [self.tableView beginUpdates];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:transit.places.count-1]  withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
 }
 
-- (void)placemarkDidUpdate:(Transit *)transit {
+- (void)transitDidStart:(Transit*)transit {
+    //Insert new transit
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+}
+
+- (void)transitDidUpdate:(Transit *)transit {
+
+    [self.tableView beginUpdates];
     [self.tableView reloadData];
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Table view Delegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HEADER_CELLID];
-    
-    return cell.contentView;
+    if (section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:HEADER_CELLID];
+        return cell.contentView;
+    } else {
+        return [UIView new];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 120;
+    if (section == 0) {
+        return 120;
+    } else {
+        return 0;
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return transits.transit.places.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return transits.transit.places.count + transits.transit.coordinatesForPlace.count;
+    if (transits.transit.coordinatesForPlace.count > section) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row % 2 == 0) {
+    if (indexPath.row == 0) {
         //First cell & even indexpaths are going to be placemarks alwasy
         PlacemarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLACEMARK_CELLID forIndexPath:indexPath];
         
         //Retrieve object
-        Placemark *place = transits.transit.places[(indexPath.row/2)];
+        Placemark *place = transits.transit.places[indexPath.section];
         [cell configureCellWithTransitWithName:place.name departureTime:place.departureDate arrivalTime:place.arrivalDate];
         
         return cell;
     } else {
         PlacemarkTransitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PLACEMARK_TRANSIT_CELLID forIndexPath:indexPath];
-        int index = (int)(indexPath.row/2) - 1;
-        int minutes = [transits.transit getTransitMinutesForTransitIndex:index];
+
+        int minutes = [transits.transit getTransitMinutesForTransitIndex:(int)indexPath.section];
         //The height of the walking section would vary height depending on how much time the user has been moving
         
         double multiplier = [self convertRangeOfMinutes:minutes];

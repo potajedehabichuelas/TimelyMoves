@@ -9,7 +9,7 @@
 #import "TransitTracker.h"
 
 const int STOP_BY_SECONDS = 3;
-const int MIN_ACCURACY = 50;
+const int MIN_ACCURACY = 160;
 
 #define CLCOORDINATE_EPSILON 0.0000001f
 #define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
@@ -42,7 +42,7 @@ const int MIN_ACCURACY = 50;
     if (self = [super init]) {
         self.transit = [[Transit alloc] init];
         partialLocations = [[NSMutableArray alloc] init];
-        locationIsStill = NO;
+        locationIsStill = YES;
         departureTimeNeedsUpdating = NO;
         firstPlacemarkAdded = NO;
         timeElapsedStill = nil;
@@ -69,7 +69,7 @@ const int MIN_ACCURACY = 50;
             }
             [place setName:locationName];
             //Call delegate to update the marker
-            [self.transitFeedDelegate transitDidUpdate:self.transit];
+            [self.transitFeedDelegate placemarkDidUpdate:self.transit];
         }];
     }
 }
@@ -104,6 +104,7 @@ const int MIN_ACCURACY = 50;
     //Set the reference that would hold the locations
     NSString* dictKey = [NSString stringWithFormat:@"%lul",(self.transit.places.count-1)];
     [self.transit.coordinatesForPlace setObject:partialLocations forKey:dictKey];
+    [self.transitFeedDelegate transitDidStart:self.transit];
 }
 
 #pragma mark LocationFeedDelegate Methods
@@ -118,17 +119,17 @@ const int MIN_ACCURACY = 50;
     }
     
     //Compare locations to check if they're equal (can't be exactly equal since they contain Double values)
-    if (CLCOORDINATES_EQUAL2(newLoc.coordinate, lastLocation.coordinate)) {
+    if (CLCOORDINATES_EQUAL2(newLoc.coordinate, lastLocation.coordinate) || !firstPlacemarkAdded) {
     
         //Check if the 'locationIsStill' flag was already set to true (location has been still for a while)
-        if (!locationIsStill) {
+        if (!locationIsStill && firstPlacemarkAdded) {
             NSLog(@"Location is still: Initializing timer");
             //Set bool flagt to true
             locationIsStill = YES;
             //start the timer (elapsed time) to determine if we should add a placemark
             timeElapsedStill = [NSDate date];
             
-        } else if (locationIsStill && ([[NSDate date] timeIntervalSinceDate:timeElapsedStill] > STOP_BY_SECONDS || !firstPlacemarkAdded)) {
+        } else if ((locationIsStill && ([[NSDate date] timeIntervalSinceDate:timeElapsedStill] > STOP_BY_SECONDS)) || !firstPlacemarkAdded) {
             
             //Check if the elapsed time is more than the value set by 'STOP_BY_SECONDS'
             NSLog(@"Creating new placemark: User has been still for too long!");
@@ -155,7 +156,6 @@ const int MIN_ACCURACY = 50;
             [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
             [self linkLocationArrayToPlacemark];
         }
-        
         //Call the delegate to start updating this section
         [self.transitFeedDelegate transitDidUpdate:transit];
     }

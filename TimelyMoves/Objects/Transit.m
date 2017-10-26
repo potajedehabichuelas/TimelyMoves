@@ -20,18 +20,17 @@
 
 - (double)getTransitMinutesForTransitIndex:(int)tIndex {
     
-    if (tIndex >= 0 && self.places.count > tIndex+1) {
-        Placemark *firstPlace = self.places[tIndex];
-        Placemark *nextPlace = self.places[tIndex+1];
-        
-        NSLog(@"departure %@",firstPlace.departureDate);
-        NSLog(@"arrival %@",nextPlace.arrivalDate);
-    
-        NSLog(@"elapsed seconds %f",[nextPlace.arrivalDate timeIntervalSinceDate:firstPlace.departureDate]);
-        return [nextPlace.arrivalDate timeIntervalSinceDate:firstPlace.departureDate] / 60;
-        
-    } else {
+    if (tIndex < 0){
         return 0;
+    } else {
+        Placemark *firstPlace = self.places[tIndex];
+        if (self.places.count <= tIndex+1) {
+            //There is no next place so we are still in transit
+            return [[NSDate date] timeIntervalSinceDate:firstPlace.departureDate] / 60;
+        } else {
+            Placemark *nextPlace = self.places[tIndex+1];
+            return [nextPlace.arrivalDate timeIntervalSinceDate:firstPlace.departureDate] / 60;
+        }
     }
 }
 
