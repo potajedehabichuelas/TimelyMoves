@@ -171,7 +171,6 @@ const int UPDATE_FREQUENCY = 5;
             //Call the delegate to start updating this section
             [self.transitFeedDelegate transitDidUpdate:transit];
             timeElapsedForUpdate = nil;
-            NSLog(@"Updating");
         }
     }
 }

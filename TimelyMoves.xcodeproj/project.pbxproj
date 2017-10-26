@@ -22,6 +22,8 @@
 		48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */; };
 		48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */; };
 		48CF72601FA235C800652479 /* TimelyMovesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CF725F1FA235C800652479 /* TimelyMovesTests.m */; };
+		48CF72681FA26B5200652479 /* TransitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CF72671FA26B5200652479 /* TransitTests.m */; };
+		48CF726A1FA26B6300652479 /* PlacemarkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CF72691FA26B6300652479 /* PlacemarkTests.m */; };
 		FACD0B6513AF8B953EA9ABCB /* libPods-TimelyMoves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		48CF725D1FA235C800652479 /* TimelyMovesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimelyMovesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48CF725F1FA235C800652479 /* TimelyMovesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelyMovesTests.m; sourceTree = "<group>"; };
 		48CF72611FA235C900652479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48CF72671FA26B5200652479 /* TransitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitTests.m; sourceTree = "<group>"; };
+		48CF72691FA26B6300652479 /* PlacemarkTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlacemarkTests.m; sourceTree = "<group>"; };
 		5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimelyMoves.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F68077C2F6D520C34F22E7 /* Pods-TimelyMoves.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.release.xcconfig"; sourceTree = "<group>"; };
 		EA9CA8D7C6270F46503714D7 /* Pods-TimelyMoves.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 			children = (
 				48CF725F1FA235C800652479 /* TimelyMovesTests.m */,
 				48CF72611FA235C900652479 /* Info.plist */,
+				48CF72671FA26B5200652479 /* TransitTests.m */,
+				48CF72691FA26B6300652479 /* PlacemarkTests.m */,
 			);
 			path = TimelyMovesTests;
 			sourceTree = "<group>";
@@ -404,7 +410,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CF726A1FA26B6300652479 /* PlacemarkTests.m in Sources */,
 				48CF72601FA235C800652479 /* TimelyMovesTests.m in Sources */,
+				48CF72681FA26B5200652479 /* TransitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +585,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z97F83GR8X;
 				INFOPLIST_FILE = TimelyMovesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = timelyMoves.test.TimelyMovesTests;
@@ -591,6 +600,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z97F83GR8X;
 				INFOPLIST_FILE = TimelyMovesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = timelyMoves.test.TimelyMovesTests;
