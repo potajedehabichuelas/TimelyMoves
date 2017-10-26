@@ -70,7 +70,14 @@ NSString* const HEADER_CELLID = @"headerCell";
 
 - (void)transitDidUpdate:(Transit *)transit {
     
-    [self.tableView reloadData];
+    [self.tableView beginUpdates];
+    if (transit.places.count > 1) {
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:transit.places.count-2 inSection:0]] withRowAnimation: UITableViewRowAnimationFade];
+    }
+    NSArray *indexPaths = @[[NSIndexPath indexPathForRow:transit.places.count-1 inSection:0]];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Table view Delegate
@@ -93,7 +100,7 @@ NSString* const HEADER_CELLID = @"headerCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return transits.transit.places.count;// + transits.transit.coordinatesForPlace.count;
+    return transits.transit.places.count ;//+ transits.transit.coordinatesForPlace.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

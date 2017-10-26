@@ -24,8 +24,6 @@
 - (void)configureCellWithTransitMinutes:(double)minutes multiplier:(double)multiplier {
     self.transitMinutes.text = [NSString stringWithFormat:@"%g min", minutes];
     self.transitViewHeightConstraint.constant = 120 * multiplier;
-    NSLog(@"CONSTANT IS %f", self.transitViewHeightConstraint.constant);
-    
 }
 
 @end
