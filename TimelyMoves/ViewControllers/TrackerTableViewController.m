@@ -61,7 +61,7 @@ NSString* const HEADER_CELLID = @"headerCell";
 
 - (void)viewDidLayoutSubviews {
     
-    if (self.tableView.contentSize.height < self.tableView.frame.size.height) {
+    if (self.tableView.contentSize.height * 1.1 < self.tableView.frame.size.height) {
         self.tableView.scrollEnabled = NO;
     } else {
         self.tableView.scrollEnabled = YES;

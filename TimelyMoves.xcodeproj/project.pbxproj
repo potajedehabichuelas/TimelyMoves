@@ -21,8 +21,19 @@
 		48CAC5DB1FA0AD610039A2E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5DA1FA0AD610039A2E2 /* main.m */; };
 		48CAC5F21FA0B0C30039A2E2 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */; };
 		48CAC5F61FA0B8E70039A2E2 /* InterfaceUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */; };
+		48CF72601FA235C800652479 /* TimelyMovesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48CF725F1FA235C800652479 /* TimelyMovesTests.m */; };
 		FACD0B6513AF8B953EA9ABCB /* libPods-TimelyMoves.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48CF72621FA235C900652479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48CAC5C01FA0AD610039A2E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48CAC5C71FA0AD610039A2E2;
+			remoteInfo = TimelyMoves;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4842099C1FA0BDDB000488D2 /* TrackerTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackerTableViewController.h; sourceTree = "<group>"; };
@@ -51,6 +62,9 @@
 		48CAC5F11FA0B0C30039A2E2 /* WelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		48CAC5F41FA0B8E70039A2E2 /* InterfaceUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceUtilities.h; sourceTree = "<group>"; };
 		48CAC5F51FA0B8E70039A2E2 /* InterfaceUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceUtilities.m; sourceTree = "<group>"; };
+		48CF725D1FA235C800652479 /* TimelyMovesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimelyMovesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		48CF725F1FA235C800652479 /* TimelyMovesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelyMovesTests.m; sourceTree = "<group>"; };
+		48CF72611FA235C900652479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F230DD288B17F1A8F68BB69 /* libPods-TimelyMoves.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TimelyMoves.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F68077C2F6D520C34F22E7 /* Pods-TimelyMoves.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.release.xcconfig"; sourceTree = "<group>"; };
 		EA9CA8D7C6270F46503714D7 /* Pods-TimelyMoves.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimelyMoves.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimelyMoves/Pods-TimelyMoves.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,6 +76,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FACD0B6513AF8B953EA9ABCB /* libPods-TimelyMoves.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48CF725A1FA235C800652479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				48CAC5CA1FA0AD610039A2E2 /* TimelyMoves */,
+				48CF725E1FA235C800652479 /* TimelyMovesTests */,
 				48CAC5C91FA0AD610039A2E2 /* Products */,
 				29005DDA6FBBF9D7940BAA2D /* Pods */,
 				EAFA70DF992CEA285D68051C /* Frameworks */,
@@ -126,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */,
+				48CF725D1FA235C800652479 /* TimelyMovesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +192,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		48CF725E1FA235C800652479 /* TimelyMovesTests */ = {
+			isa = PBXGroup;
+			children = (
+				48CF725F1FA235C800652479 /* TimelyMovesTests.m */,
+				48CF72611FA235C900652479 /* Info.plist */,
+			);
+			path = TimelyMovesTests;
+			sourceTree = "<group>";
+		};
 		EAFA70DF992CEA285D68051C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +232,24 @@
 			productReference = 48CAC5C81FA0AD610039A2E2 /* TimelyMoves.app */;
 			productType = "com.apple.product-type.application";
 		};
+		48CF725C1FA235C800652479 /* TimelyMovesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48CF72661FA235C900652479 /* Build configuration list for PBXNativeTarget "TimelyMovesTests" */;
+			buildPhases = (
+				48CF72591FA235C800652479 /* Sources */,
+				48CF725A1FA235C800652479 /* Frameworks */,
+				48CF725B1FA235C800652479 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48CF72631FA235C900652479 /* PBXTargetDependency */,
+			);
+			name = TimelyMovesTests;
+			productName = TimelyMovesTests;
+			productReference = 48CF725D1FA235C800652479 /* TimelyMovesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +262,11 @@
 					48CAC5C71FA0AD610039A2E2 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+					};
+					48CF725C1FA235C800652479 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 48CAC5C71FA0AD610039A2E2;
 					};
 				};
 			};
@@ -229,6 +284,7 @@
 			projectRoot = "";
 			targets = (
 				48CAC5C71FA0AD610039A2E2 /* TimelyMoves */,
+				48CF725C1FA235C800652479 /* TimelyMovesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -241,6 +297,13 @@
 				48CAC5D81FA0AD610039A2E2 /* LaunchScreen.storyboard in Resources */,
 				48CAC5D51FA0AD610039A2E2 /* Assets.xcassets in Resources */,
 				48CAC5D31FA0AD610039A2E2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48CF725B1FA235C800652479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +400,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		48CF72591FA235C800652479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48CF72601FA235C800652479 /* TimelyMovesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48CF72631FA235C900652479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48CAC5C71FA0AD610039A2E2 /* TimelyMoves */;
+			targetProxy = 48CF72621FA235C900652479 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		48CAC5D11FA0AD610039A2E2 /* Main.storyboard */ = {
@@ -493,6 +572,34 @@
 			};
 			name = Release;
 		};
+		48CF72641FA235C900652479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TimelyMovesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = timelyMoves.test.TimelyMovesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimelyMoves.app/TimelyMoves";
+			};
+			name = Debug;
+		};
+		48CF72651FA235C900652479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TimelyMovesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = timelyMoves.test.TimelyMovesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimelyMoves.app/TimelyMoves";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -510,6 +617,15 @@
 			buildConfigurations = (
 				48CAC5DF1FA0AD610039A2E2 /* Debug */,
 				48CAC5E01FA0AD610039A2E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48CF72661FA235C900652479 /* Build configuration list for PBXNativeTarget "TimelyMovesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48CF72641FA235C900652479 /* Debug */,
+				48CF72651FA235C900652479 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,6 +10,7 @@
 
 const int STOP_BY_SECONDS = 3;
 const int MIN_ACCURACY = 160;
+const int UPDATE_FREQUENCY = 5;
 
 #define CLCOORDINATE_EPSILON 0.0000001f
 #define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
@@ -22,6 +23,7 @@ const int MIN_ACCURACY = 160;
     
     NSMutableArray *partialLocations;
     NSDate *timeElapsedStill;
+    NSDate *timeElapsedForUpdate;
     CLGeocoder* reverseGeocoder;
 }
 
@@ -46,6 +48,7 @@ const int MIN_ACCURACY = 160;
         departureTimeNeedsUpdating = NO;
         firstPlacemarkAdded = NO;
         timeElapsedStill = nil;
+        timeElapsedForUpdate = nil;
         reverseGeocoder = [[CLGeocoder alloc] init];
     }
     return self;
@@ -159,8 +162,18 @@ const int MIN_ACCURACY = 160;
             [self linkLocationArrayToPlacemark];
         }
     }
-    //Call the delegate to start updating this section
-    [self.transitFeedDelegate transitDidUpdate:transit];
+    
+    if (timeElapsedForUpdate == nil) {
+        //Start the timer to schedule the next delegate update
+        timeElapsedForUpdate = [NSDate date];
+    } else {
+        if ([[NSDate date] timeIntervalSinceDate:timeElapsedForUpdate] > UPDATE_FREQUENCY) {
+            //Call the delegate to start updating this section
+            [self.transitFeedDelegate transitDidUpdate:transit];
+            timeElapsedForUpdate = nil;
+            NSLog(@"Updating");
+        }
+    }
 }
 
 @end
