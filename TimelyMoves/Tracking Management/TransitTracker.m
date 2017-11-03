@@ -8,8 +8,11 @@
 
 #import "TransitTracker.h"
 
+//Time required to consider a new place (if location is still)
 const int STOP_BY_SECONDS = 3;
-const int MIN_ACCURACY = 60;
+//Minimun accuracy required (in meters) to consider location
+const int MIN_ACCURACY = 200;
+//Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
 #define CLCOORDINATE_EPSILON 0.0000001f
