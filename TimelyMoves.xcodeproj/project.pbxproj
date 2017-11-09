@@ -268,6 +268,11 @@
 					48CAC5C71FA0AD610039A2E2 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					48CF725C1FA235C800652479 = {
 						CreatedOnToolsVersion = 9.0.1;

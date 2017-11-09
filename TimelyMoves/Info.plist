@@ -21,9 +21,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>"TimelyMoves requires your location to track your movement"</string>
+	<string>TimelyMoves requires your location to track your movement</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>"TimelyMoves needs access to your location to track your position"</string>
+	<string>TimelyMoves needs access to your location to track your position</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
