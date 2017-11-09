@@ -18,8 +18,8 @@ const int UPDATE_FREQUENCY = 5;
 #define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00001f // around 5 metres radious movement to consider that we are still in the same place
 #define CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
 
-#define CLCOORDINATE_EQUAL_LOCATION_EPSILON 0.000009f
-#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EQUAL_LOCATION_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EQUAL_LOCATION_EPSILON)
+#define CLCOORDINATE_EPSILON 0.000009f
+#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 @implementation TransitTracker {
 
@@ -172,6 +172,9 @@ const int UPDATE_FREQUENCY = 5;
         if (partialLocations.count == 1 && CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
             return;
         }
+        
+        NSLog(@"%d",(int)partialLocations.count);
+        NSLog(@"distance is %d", CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate));
         
         NSLog(@"User is moving");
         //If there different we need to make sure we reset flags & timer
