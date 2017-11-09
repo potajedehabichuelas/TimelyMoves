@@ -9,7 +9,7 @@
 #import "TransitTracker.h"
 
 //Time required to consider a new place (if location is still)
-const int STOP_BY_SECONDS = 3;
+const int STOP_BY_SECONDS = 5;
 //Minimun accuracy required (in meters) to consider location
 const int MIN_ACCURACY = 150;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
@@ -172,9 +172,6 @@ const int UPDATE_FREQUENCY = 5;
         if (partialLocations.count == 1 && CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
             return;
         }
-        
-        NSLog(@"%d",(int)partialLocations.count);
-        NSLog(@"distance is %d", CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate));
         
         NSLog(@"User is moving");
         //If there different we need to make sure we reset flags & timer
