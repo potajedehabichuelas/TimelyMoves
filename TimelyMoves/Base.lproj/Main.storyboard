@@ -159,7 +159,7 @@
                                             <rect key="frame" x="50" y="0.0" width="10" height="120"/>
                                             <color key="backgroundColor" red="8.2421844126656651e-05" green="0.83168154954910278" blue="0.35779371857643127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="120" id="fjO-F5-dnC"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="fjO-F5-dnC"/>
                                                 <constraint firstAttribute="width" constant="10" id="jRE-4u-bT0"/>
                                             </constraints>
                                         </view>

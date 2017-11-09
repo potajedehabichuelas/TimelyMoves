@@ -176,7 +176,6 @@ NSString* const HEADER_CELLID = @"headerCell";
         //The height of the walking section would vary height depending on how much time the user has been moving
         
         double multiplier = [self convertRangeOfMinutes:minutes];
-        
         [cell configureCellWithTransitMinutes:minutes multiplier:multiplier];
         [self.tableView layoutIfNeeded];
         return cell;
