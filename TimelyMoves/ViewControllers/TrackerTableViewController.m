@@ -102,6 +102,12 @@ NSString* const HEADER_CELLID = @"headerCell";
         [self.tableView beginUpdates];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:transit.places.count-1]  withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]
+                                  atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        });
+       
     }
     
     if ([activityIndicatorView animating]) {
@@ -113,16 +119,24 @@ NSString* const HEADER_CELLID = @"headerCell";
     //Insert new transit
     if (transit.places.count > 0) {
         [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationFade];
+       [self.tableView insertRowsAtIndexPaths: @[[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
+        
+        //Scroll to bottom
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:transit.places.count-1]
+                                  atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        });
+        
+        //Avoid flicks
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }
 }
 
 - (void)transitDidUpdate:(Transit *)transit {
-    [self.tableView beginUpdates];
     [self.tableView reloadData];
-    [self.tableView endUpdates];
 }
 
 #pragma mark - Table view Delegate
@@ -156,6 +170,14 @@ NSString* const HEADER_CELLID = @"headerCell";
     } else {
         return 1;
     }
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
