@@ -11,12 +11,12 @@
 //Time required to consider a new place (if location is still)
 const int STOP_BY_SECONDS = 3;
 //Minimun accuracy required (in meters) to consider location
-const int MIN_ACCURACY = 200;
+const int MIN_ACCURACY = 100;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
-#define CLCOORDINATE_EPSILON 0.0000001f
-#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
+#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00003f // around 5 metres radious movement to consider that we are still in the same place
+#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
 
 @implementation TransitTracker {
 
@@ -83,7 +83,11 @@ const int UPDATE_FREQUENCY = 5;
 - (void)createNewPlacemarkWithLocation:(CLLocation*)location {
     
     //First create the object and add it to the Transits along with the coordinates (if there were any)
-    Placemark *newPlace = [[Placemark alloc] initWithPlaceName:@"" location:location.coordinate arrivalDate:location.timestamp departureDate:nil];
+    Placemark *newPlace = [[Placemark alloc] initWithPlaceName:@"" location:location.coordinate arrivalDate:[NSDate date] departureDate:nil];
+    //Note for the line 86
+    // I was using the locations timestamp property, but it was returning a date which was one minute before the actual date timestamp -> location.timestamp
+    
+    
     //We add it firstly into the array, then geodecoding address to avoid items potentially coming in different order
     [self updatePlacemarkName:location placemark:newPlace];
     

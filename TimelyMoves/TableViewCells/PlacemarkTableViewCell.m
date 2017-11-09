@@ -27,8 +27,10 @@
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     [timeFormat setDateFormat:@"HH:mm"];
     
+    NSDate *departureTime = departure == nil ? [NSDate date] : departure;
+    
     NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitMinute
-                                                                   fromDate: arrival toDate: departure == nil ? [NSDate date] : departure options: 0];
+                                                                   fromDate: arrival toDate: departureTime options: 0];
     
     self.transitMinutes.text = [NSString stringWithFormat:@"%li min", (long)[components minute]];
     
