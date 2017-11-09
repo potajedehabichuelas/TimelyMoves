@@ -11,12 +11,15 @@
 //Time required to consider a new place (if location is still)
 const int STOP_BY_SECONDS = 3;
 //Minimun accuracy required (in meters) to consider location
-const int MIN_ACCURACY = 100;
+const int MIN_ACCURACY = 150;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
-#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00003f // around 5 metres radious movement to consider that we are still in the same place
-#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
+#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00001f // around 5 metres radious movement to consider that we are still in the same place
+#define CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
+
+#define CLCOORDINATE_EPSILON 0.000009f
+#define CLCOORDINATES_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 @implementation TransitTracker {
 
@@ -148,7 +151,7 @@ const int UPDATE_FREQUENCY = 5;
             
             //We need to keep 'locationIsStill' as YES since we are not moving (we add a placemark because we are staying still!) and this should not change after we add a placemark
             //We do set the timer to nil to avoid creating placemarks everytime we enter
-             timeElapsedStill = nil;
+            timeElapsedStill = nil;
             
             //Create & add a new placemark
             [self createNewPlacemarkWithLocation:newLoc];
@@ -156,6 +159,23 @@ const int UPDATE_FREQUENCY = 5;
         }
         
     } else {
+        
+        //First location is always the placemark's base, so if we are still in a radious of
+        // 'CLCOORDINATE_NEW_PLACEMARK_EPSILON' meters we dont consider we are moving
+        
+        CLLocation *lastPlacemarkLoc = partialLocations.firstObject;
+        //Translation, if there is only one location in the array and this location is within a radious of
+        // 'CLCOORDINATE_NEW_PLACEMARK_EPSILON' meters then we are not moving
+        // If there are more locations in the array this condition is not valid as it means we just came back to the placemark
+        // location but we are still moving
+        
+        if (partialLocations.count == 1 && CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
+            return;
+        }
+        
+        NSLog(@"%d",(int)partialLocations.count);
+        NSLog(@"distance is %d", CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate));
+        
         NSLog(@"User is moving");
         //If there different we need to make sure we reset flags & timer
         locationIsStill = NO;
@@ -168,6 +188,7 @@ const int UPDATE_FREQUENCY = 5;
             [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
             [self linkLocationArrayToPlacemark];
         }
+        
     }
     
     if (timeElapsedForUpdate == nil) {
