@@ -36,7 +36,7 @@
     self.locationFeedDelegate = delegate;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     self.locationManager.allowsBackgroundLocationUpdates = YES;
-    self.locationManager.pausesLocationUpdatesAutomatically = YES;
+    self.locationManager.pausesLocationUpdatesAutomatically = NO;
     [self.locationManager startUpdatingLocation];
 }
 
