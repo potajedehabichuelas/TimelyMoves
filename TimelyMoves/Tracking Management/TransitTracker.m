@@ -9,13 +9,13 @@
 #import "TransitTracker.h"
 
 //Time required to consider a new place (if location is still)
-const int STOP_BY_SECONDS = 5;
+const int STOP_BY_SECONDS = 10;
 //Minimun accuracy required (in meters) to consider location
 const int MIN_ACCURACY = 150;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
-#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00006f // around 15 metres radious movement to consider that we are still in the same place
+#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00008f // around 20 metres radious movement to consider that we are still in the same place
 #define CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
 
 #define CLCOORDINATE_NEW_LOCATION_EPSILON 0.000005f // Constant value to consider 2 locations are equal (1.3 meters)
@@ -169,23 +169,21 @@ const int UPDATE_FREQUENCY = 5;
         // If there are more locations in the array this condition is not valid as it means we just came back to the placemark
         // location but we are still moving
         
-        if (partialLocations.count == 1 && CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
-            return;
+        if (partialLocations.count > 1 || !CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
+            
+            NSLog(@"User is moving");
+            //If there different we need to make sure we reset flags & timer
+            locationIsStill = NO;
+            timeElapsedStill = nil;
+            
+            //Add the location to the array - to avoid having components with virtually the same location
+            [partialLocations addObject:newLoc];
+            
+            if (departureTimeNeedsUpdating) {
+                [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
+                [self linkLocationArrayToPlacemark];
+            }
         }
-        
-        NSLog(@"User is moving");
-        //If there different we need to make sure we reset flags & timer
-        locationIsStill = NO;
-        timeElapsedStill = nil;
-        
-        //Add the location to the array - to avoid having components with virtually the same location
-        [partialLocations addObject:newLoc];
-        
-        if (departureTimeNeedsUpdating) {
-            [self updateLastPlaceMarkDepartureTime:newLoc.timestamp];
-            [self linkLocationArrayToPlacemark];
-        }
-        
     }
     
     if (timeElapsedForUpdate == nil) {
