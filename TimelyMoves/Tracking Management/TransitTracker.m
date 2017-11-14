@@ -132,7 +132,7 @@ const int UPDATE_FREQUENCY = 5;
 
 #pragma mark LocationFeedDelegate Methods
 
-- (void)locationUpdated:(CLLocation*)newLoc {
+- (void)locationUpdated:(CLLocation*)newLoc speed:(double)speed {
     
     CLLocation* lastLocation = [partialLocations lastObject];
 
@@ -177,10 +177,12 @@ const int UPDATE_FREQUENCY = 5;
         // If there are more locations in the array this condition is not valid as it means we just came back to the placemark
         // location but we are still moving
         
-        if (partialLocations.count > 1 || !CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate)) {
+        NSLog(@"speed is %f", speed);
+        
+        if (partialLocations.count > 1 || (!CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate) && speed > 0 )) {
             
             NSLog(@"User is moving");
-            //If there different we need to make sure we reset flags & timer
+            //If they are different we need to make sure we reset flags & timer
             locationIsStill = NO;
             timeElapsedStill = nil;
             

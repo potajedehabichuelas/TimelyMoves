@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, AuthorizationStatus) {
 @end
 
 @protocol LocationFeedDelegate
-- (void)locationUpdated:(CLLocation*)newLoc;
+- (void)locationUpdated:(CLLocation*)newLoc speed:(double)speed;
 @end
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate>

@@ -81,7 +81,7 @@
     
     if (newLocation != nil) {
         //Send the location to the listener
-        [self.locationFeedDelegate locationUpdated:newLocation];
+        [self.locationFeedDelegate locationUpdated:newLocation speed:self.locationManager.location.speed];
     }
 }
 
