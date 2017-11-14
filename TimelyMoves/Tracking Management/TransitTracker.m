@@ -15,6 +15,14 @@ const int MIN_ACCURACY = 150;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
+//Improvements
+//
+//  1) Delay interface update (when adding a new transit - walk) until we are sure that the user has left the previous placemark
+//  This way we can discard the transit if the user just walked around the last placemark without leaving it.
+//
+//  2) Give more importance to more accurate locations, so that if the location has a lot of noise, it will not have much impact in the app.
+//
+
 #define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00015f // around 39 metres radious movement to consider that we are still in the same place
 #define CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
 
