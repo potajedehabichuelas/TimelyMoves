@@ -15,7 +15,7 @@ const int MIN_ACCURACY = 150;
 //Delegate location update frequency (in seconds); i.e the transitFeedDelegate will be called every this interval
 const int UPDATE_FREQUENCY = 5;
 
-#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00008f // around 20 metres radious movement to consider that we are still in the same place
+#define CLCOORDINATE_NEW_PLACEMARK_EPSILON 0.00015f // around 39 metres radious movement to consider that we are still in the same place
 #define CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_NEW_PLACEMARK_EPSILON)
 
 #define CLCOORDINATE_NEW_LOCATION_EPSILON 0.000005f // Constant value to consider 2 locations are equal (1.3 meters)

@@ -35,7 +35,7 @@
     //Starts updating location and sets the delegate that would receive the location's information
     self.locationFeedDelegate = delegate;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-    self.locationManager.allowsBackgroundLocationUpdates = YES;
+    self.locationManager.allowsBackgroundLocationUpdates = NO;
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
     [self.locationManager startUpdatingLocation];
 }
