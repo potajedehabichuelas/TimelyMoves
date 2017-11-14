@@ -177,8 +177,6 @@ const int UPDATE_FREQUENCY = 5;
         // If there are more locations in the array this condition is not valid as it means we just came back to the placemark
         // location but we are still moving
         
-        NSLog(@"speed is %f", speed);
-        
         if (partialLocations.count > 1 || (!CLCOORDINATES_IS_IN_PLACEMARK_EQUAL2(newLoc.coordinate, lastPlacemarkLoc.coordinate) && speed > 0 )) {
             
             NSLog(@"User is moving");
